@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Exercise 3-2</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Perpetua, serif;
+      margin: 0;
+      padding: 0;
+      background-color: white;
+    }
+
+    h1 {
+      color: RoyalBlue;
+      text-align: center;
+      margin: 20px 0;
+      font-size: 2.5em;
+    }
+
+    .menu-container {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: stretch;
+    }
+
+    .dropdown {
+      position: relative;
+      flex: 1;
+      min-width: 100px;
+    }
+
+    .dropdown-button {
+      background-color: royalblue;
+      color: white;
+      padding: 12px 16px;
+      font-size: 16px;
+      border: none;
+      cursor: pointer;
+      width: 100%;
+      height: 100%;
+      text-align: center;
+      font-family: Perpetua, serif;
+      white-space: nowrap;
+    }
+
+    .dropdown-button:hover {
+      background-color: royalblue;
+    }
+
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      background-color: white;
+      width: 100%;
+      box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+      z-index: 1000;
+      top: 100%;
+      left: 0;
+    }
+
+    .dropdown-content a {
+      color: royalblue;
+      padding: 12px 16px;
+      text-decoration: none;
+      display: block;
+      text-align: center;
+      font-family: Perpetua, serif;
+      border-bottom: 2px solid RoyalBlue;
+      border-left: 2px solid RoyalBlue;
+      border-right: 2px solid RoyalBlue;
+    }
+
+    .dropdown-content a:hover,
+    .dropdown-content a:focus,
+    .dropdown-content a:active {
+      background-color: powderblue;
+      color: #004085;
+    }
+
+    .dropdown:hover .dropdown-content {
+      display: block;
+    }
+
+    .main-ul {
+      position: absolute;
+      top: 120px;
+      left: 0;
+      right: 0;
+      z-index: 100;
+    }
+
+    iframe {
+      width: 100%;
+      height: 550px;
+      border: none;
+      margin-top: 75px;
+    }
+
+    @media screen and (max-width: 600px) {
+      .menu-container {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0;
+      }
+
+      .dropdown {
+        width: 100%;
+      }
+
+      .dropdown-button {
+        width: 100%;
+        height: auto;
+        white-space: normal;
+      }
+
+      .dropdown-content {
+        width: 100%;
+        position: relative;
+        box-shadow: none;
+      }
+
+      .main-ul {
+        position: relative;
+        top: auto;
+      }
+
+      iframe {
+        margin-top: 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <h1>Web Intelligence</h1>
+
+  <div class="main-ul">
+    <div class="menu-container">
+      <div class="dropdown">
+        <button class="dropdown-button">JavaScript</button>
+        <div class="dropdown-content">
+          <a href="https://www.w3schools.com/js/default.asp" target="_blank">W3Schools</a>
+          <a href="https://developer.mozilla.org/zh-TW/docs/Web/JavaScript" target="_blank">MDN</a>
+          <a href="https://www.json.org/json-en.html" target="_blank">JSON</a>
+        </div>
+      </div>
+
+      <div class="dropdown">
+        <button class="dropdown-button">Client-side Framework</button>
+        <div class="dropdown-content">
+          <a href="https://react.dev/" target="_blank">React</a>
+          <a href="https://vuejs.org/" target="_blank">Vue.js</a>
+          <a href="https://angular.tw/" target="_blank">Angular</a>
+        </div>
+      </div>
+
+      <div class="dropdown">
+        <button class="dropdown-button">Node.js</button>
+        <div class="dropdown-content">
+          <a href="https://www.w3schools.com/nodejs/" target="_blank">Node.js Tutorial</a>
+        </div>
+      </div>
+
+      <div class="dropdown">
+        <button class="dropdown-button">PHP</button>
+        <div class="dropdown-content">
+          <a href="https://www.php.net/manual/en/tutorial.php" target="_blank">PHP Tutorial</a>
+        </div>
+      </div>
+
+      <div class="dropdown">
+        <button class="dropdown-button">Python FastAPI</button>
+        <div class="dropdown-content">
+          <a href="https://fastapi.tiangolo.com/tutorial/" target="_blank">FastAPI User Guide</a>
+        </div>
+      </div>
+
+      <div class="dropdown">
+        <button class="dropdown-button">Spring Boot</button>
+        <div class="dropdown-content">
+          <a href="https://spring.io/guides/gs/spring-boot" target="_blank">Spring Boot Tutorial</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <iframe src="01357033-Exercise3-1.html"></iframe>
+</body>
+</html>

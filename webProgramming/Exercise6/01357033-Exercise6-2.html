@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>十八仔</title>
+    <style type="text/css">
+        li {
+            display: inline;
+            margin-right: 10px;
+        }
+
+        ol {
+            margin-left: 0;
+            padding-left: 0;
+        }
+
+        img.dice {
+            width: 100px;
+            height: 100px;
+        }
+
+        img.congrats {
+            width: 440px;
+        }
+
+        #msg {
+            font-family: Helvetica, "Microsoft YaHei", "LiHei Pro", TW-Kai;
+            font-size: 120%;
+            color: navy;
+        }
+    </style>
+</head>
+
+<body>
+    <form action="#">
+        <input id="rollButton" type="button" value="Roll Dice">
+        <input id="cheatButton" type="button" value="Shortcut">
+        <input id="cheatButton2" type="button" value="Shortcut2">
+    </form>
+    <ol>
+        <li><img id="die1" class="dice" src="die1.jpg" alt="blank image"></li>
+        <li><img id="die2" class="dice" src="die2.jpg" alt="blank image"></li>
+        <li><img id="die3" class="dice" src="die3.jpg" alt="blank image"></li>
+        <li><img id="die4" class="dice" src="die4.jpg" alt="blank image"></li>
+    </ol>
+    <div id="msg"></div>
+
+    <script>
+        let die1Value, die2Value, die3Value, die4Value;
+
+        document.getElementById('rollButton').addEventListener('click', rollDice);
+        document.getElementById('cheatButton').addEventListener('click', shortcut);
+        document.getElementById('cheatButton2').addEventListener('click', shortcut2);
+
+        function rollDice() {
+            die1Value = Math.floor(Math.random() * 6) + 1;
+            die2Value = Math.floor(Math.random() * 6) + 1;
+            die3Value = Math.floor(Math.random() * 6) + 1;
+            die4Value = Math.floor(Math.random() * 6) + 1;
+            
+            updateDisplay();
+            checkResult();
+        }
+
+        function updateDisplay() {
+            document.getElementById('die1').src = 'die' + die1Value + '.jpg';
+            document.getElementById('die2').src = 'die' + die2Value + '.jpg';
+            document.getElementById('die3').src = 'die' + die3Value + '.jpg';
+            document.getElementById('die4').src = 'die' + die4Value + '.jpg';
+        }
+
+        function checkResult() {
+            const values = [die1Value, die2Value, die3Value, die4Value];
+            const counts = {};
+            
+            for (let val of values) {
+                counts[val] = (counts[val] || 0) + 1;
+            }
+            
+            const countValues = Object.values(counts);
+            const maxCount = Math.max(...countValues);
+            
+            const msgDiv = document.getElementById('msg');
+            msgDiv.innerHTML = '';
+            if (maxCount === 4) {
+                msgDiv.innerHTML = 'Congratulations! Your roll is "一色"!<br><img class="congrats" src="congrats.png" alt="congratulations">';
+                return;
+            }
+            if (maxCount === 1) {
+                msgDiv.textContent = 'OOPS! Your roll is "無面"!';
+                return;
+            }
+            if (maxCount === 3) {
+                msgDiv.textContent = 'No decision, please re-roll the dice!';
+                return;
+            }
+            if (maxCount === 2) {
+                const pairValue = Object.keys(counts).find(key => counts[key] === 2);
+                const otherValues = values.filter(val => val != pairValue);
+                const score = otherValues[0] + otherValues[1];
+                if (score === 12) {
+                    msgDiv.innerHTML = 'Congratulations! Your roll is "十八"!<br><img class="congrats" src="congrats.png" alt="congratulations"><br>Your score is ' + score + '!';
+                } else {
+                    msgDiv.textContent = 'Your score is ' + score + '!';
+                }
+                return;
+            }
+        }
+
+        function shortcut() {
+            const sameValue = Math.floor(Math.random() * 6) + 1;
+            die1Value = sameValue;
+            die2Value = sameValue;
+            die3Value = sameValue;
+            die4Value = sameValue;
+            
+            updateDisplay();
+            checkResult();
+        }
+
+        function shortcut2() {
+            const pairValue = Math.floor(Math.random() * 6) + 1;
+            die1Value = pairValue;
+            die2Value = pairValue;
+            die3Value = 6;
+            die4Value = 6;
+            
+            updateDisplay();
+            checkResult();
+        }
+    </script>
+</body>
+
+</html>

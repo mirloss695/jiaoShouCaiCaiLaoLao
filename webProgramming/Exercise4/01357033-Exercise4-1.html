@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercise 4</title>
+    <style>
+        body{
+            font-family: Helvetica, sans-serif;
+        }
+        .name-style{
+            color: firebrick;
+            font-weight: 900;
+        }
+        .age-style{
+            color: Navy;
+            text-decoration: underline;
+            font-weight: 100;
+        }
+    </style>
+</head>
+<body>
+    <script>
+        let name;
+        let birthInput;
+        const year = new Date().getFullYear();
+        name = window.prompt("Please input your name: ");
+        birthInput = window.prompt("Please input your birth year: ");
+        const birth = parseInt(birthInput);
+        const age = year - birth;
+        document.writeln("<h1>Hello, <span class='name-style'>"+ name + "</span> !</h1>");
+        console.log("Hello, "+ name + "!");
+        if (birth > year){
+            window.alert("Your input is incorrect!");
+        }
+        if (isNaN(birth) || age <= 0){
+            document.writeln("<h1>Your age is a mystery!</h1>")
+            console.log("Your input is incorrect!");
+        }else if (age==1){
+            document.writeln("<h1>You are <span class='age-style'>one</span> year old!</h1>");
+            console.log("You are one year old!");
+        }else {
+            document.writeln("<h1>You are <span class='age-style'>" + age + "</span> years old!</h1>");
+            console.log("You are " + age + " years old!");
+        }
+        
+
+    </script>
+</body>
+</html>
